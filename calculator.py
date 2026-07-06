@@ -29,4 +29,13 @@ color_white = "white"
 window = tkinter.Tk()  #create window
 window.title("calculator")
 window.resizable(False, False)  #to make sure user cannot resize the window by dragging on the sides --- one false is for width and one is for height
-window.mainloop()
+
+frame = tkinter.Frame(window) #Placing the frame inside the parent i.e. (window)
+#First component
+label = tkinter.Label(frame, text="0", font=("Arial", 45), background=color_blue,
+                      foreground=color_white) #foreground=fontcolor
+label.pack()
+frame.pack()
+
+
+window.mainloop() # Makes sure window stays open while the code runs
