@@ -102,7 +102,34 @@ def button_clicked(value):
   global right_symbols, top_symbols, label, A, B, operator    #gloval is used to use a variable from outside the function, not a local new variable inside the function
   
   if value in right_symbols:
-    pass
+    
+    if value == "=":
+      if A is not None and operator is not None:
+        B = label["text"]
+        numA = float(A)
+        numB = float(B)
+
+        if operator == "+":
+          label["text"] = format_num(numA + numB)
+
+        elif operator  == "-":
+          label["text"] = format_num(numA - numB)
+
+        elif operator == "÷":
+          label['text'] = format_num(numA/numB)
+
+        elif operator == "×":
+          label["text"] = format_num(numA*numB)   
+
+        clear_all()     
+    elif value in "÷×-+":
+      if operator is None:
+        A = label["text"]
+        label["text"] = "0"
+        B = "0"
+
+      operator = value
+
 
   elif value in top_symbols:
 
