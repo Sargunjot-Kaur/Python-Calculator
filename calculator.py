@@ -32,6 +32,9 @@ color_white = "white"
 #window setup
 
 window = tkinter.Tk()  #create window
+window.withdraw()  #hides the window
+
+
 window.title("calculator")
 window.resizable(False, False)  #to make sure user cannot resize the window by dragging on the sides --- one false is for width and one is for height
 
@@ -85,12 +88,20 @@ def button_clicked(value):
 
 
 #center the window
-window.update() #Update window with new size dimensions
-#window_width = window.winfo_width()
-#window_height = window.windfo_height()
-#screen_width = window.winfo_screenwidth()
-#screen_height = window.winfo_screenheight()
+window.update_idletasks() #Update window with new size dimensions whithout showing it
+window_width = window.winfo_width()
+window_height = window.winfo_height()
+screen_width = window.winfo_screenwidth()
+screen_height = window.winfo_screenheight()
 
-#indow_x = int((screen_width/2))
+window_x = int((screen_width/2)-(window_width/2))
+window_y = int((screen_height/2)-(window_height/2))
 
+#format  (w)x(h)+(x)+(y)
+window.geometry(f"{window_width}x{window_height}+{window_x}+{window_y}")
+
+window.deiconify() #Shows window again
 window.mainloop() # Makes sure window stays open while the code runs
+
+
+
