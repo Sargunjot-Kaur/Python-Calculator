@@ -1,4 +1,5 @@
 import tkinter
+import math
 
 button_values = [
   ["AC","+/-","%","÷"],
@@ -121,7 +122,8 @@ def button_clicked(value):
         elif operator == "×":
           label["text"] = format_num(numA*numB)   
 
-        clear_all()     
+        clear_all()    
+
     elif value in "÷×-+":
       if operator is None:
         A = label["text"]
@@ -151,13 +153,21 @@ def button_clicked(value):
         new_x = float(x)/100
         label["text"]= format_num(new_x)
 
-  else: #digits or .
+  else: #digits or . or √
     if value == ".":
       if value not in label["text"]:
         label["text"]+= value
+
+    elif value == "√":
+      x = label["text"]
+
+      if float(x)>=0:
+        root = math.sqrt(float(x))
+        label["text"] = format_num(root)
+
     elif value in "0123456789":
       if label["text"] == "0":
-        label["text"] = value #replace 0
+        label["text"] = value #replace 0    
       else:
         label["text"] += value  # append value
 
