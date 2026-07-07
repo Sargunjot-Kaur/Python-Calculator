@@ -117,7 +117,10 @@ def button_clicked(value):
           label["text"] = format_num(numA - numB)
 
         elif operator == "÷":
-          label['text'] = format_num(numA/numB)
+          if numB != 0:
+            label["text"] = format_num(numA/numB)
+          else:
+            label["text"] = "Undefined"
 
         elif operator == "×":
           label["text"] = format_num(numA*numB)   
@@ -164,7 +167,9 @@ def button_clicked(value):
       if float(x)>=0:
         root = math.sqrt(float(x))
         label["text"] = format_num(root)
-
+      else:
+        label["text"] = "Error"
+        
     elif value in "0123456789":
       if label["text"] == "0":
         label["text"] = value #replace 0    
