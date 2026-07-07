@@ -48,7 +48,8 @@ label = tkinter.Label(frame,
                       font=("Arial", 45), 
                       background=color_dark_blue,
                       foreground=color_white, 
-                      anchor= "e") #foreground=fontcolor
+                      anchor= "e",
+                      width=column_count) #foreground=fontcolor
 
 label.grid(row=0, 
            column=0, 
@@ -83,8 +84,56 @@ for row in range(row_count):
 
 frame.pack()
 
+#A+B, A-B, A*B, A/B
+A = "0"
+operator = None
+B = None
+
+def clear_all():
+  global A, B, operator
+  A = "0"
+  operator = None
+  B = None
+
+def format_num(num):
+  return str(int(num)) if num.is_integer() else str(num)  
+
 def button_clicked(value):
-  pass
+  global right_symbols, top_symbols, label, A, B, operator    #gloval is used to use a variable from outside the function, not a local new variable inside the function
+  
+  if value in right_symbols:
+    pass
+
+  elif value in top_symbols:
+
+    if value == "AC":
+      clear_all()
+      label["text"]="0"
+
+    elif value == "+/-":
+      x = label["text"]
+
+      if x != "0":
+        new_val = -float(x)                                    #covert text to float, multiply by -1 and convert back to str
+        label["text"] = format_num(new_val)
+
+    elif value =="%":
+      x = label["text"]
+
+      if x != "0":
+        new_x = float(x)/100
+        label["text"]= format_num(new_x)
+
+  else: #digits or .
+    if value == ".":
+      if value not in label["text"]:
+        label["text"]+= value
+    elif value in "0123456789":
+      if label["text"] == "0":
+        label["text"] = value #replace 0
+      else:
+        label["text"] += value  # append value
+
 
 
 #center the window
