@@ -34,8 +34,21 @@ frame = tkinter.Frame(window) #Placing the frame inside the parent i.e. (window)
 #First component
 label = tkinter.Label(frame, text="0", font=("Arial", 45), background=color_blue,
                       foreground=color_white) #foreground=fontcolor
-label.pack()
+
+label.grid(row=0, column=0)
+
+for row in range(row_count):
+  for column in range(column_count):          #Hence, for every row python checks all 4 columns
+    value = button_values[row][column]        #receives button text from the list
+    button = tkinter.Button(frame, text = value, font = ("Arial", 30),
+                            width = column_count - 1, height = 1,
+                            command = lambda value=value: button_clicked(value))
+    button.grid(row=row+1, column=column)
+       
+
 frame.pack()
 
+def button_clicked(value):
+  pass
 
 window.mainloop() # Makes sure window stays open while the code runs
